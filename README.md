@@ -1,23 +1,27 @@
 # HumanReadableId    
 
-![.NET Core](https://github.com/GFoley83/HumanReadableId/workflows/.NET%20Core/badge.svg?branch=master)
-
-Create human-readable Ids, just like Gfycat. Use the default format of _VerbAdjectiveAnimal_ or a custom format of your choosing.
+Creates a human readable IDs like "happy-energetic-dog-runs-quickly". Use the default format of adjective-adjective-animal-verb-adjective or a custom format and length of your choosing.
 
 ## Example Usage
 
 [https://dotnetfiddle.net/4KGjWQ](https://dotnetfiddle.net/4KGjWQ)
 
 ```csharp
-// Create Id in the default form VerbAdjectiveAnimal
-var id = GfycatesceIds.Generate(); // id == "ExaltedDifficultAntelope"
+// Create an ID in the default form adjective-adjective-animal-verb-adjective
+// That's 3,579,066,620,200,363 possible combinations using the default config
+// id == "pale-swift-hornbill-support-saddlebrown"
+var id = HumanReadableId.Create(); 
 
-// Create classic Gfycat Id in the form AdjectiveAdjectiveAnimal
-var id = GfycatesceIds.Generate(GfycatesceIds.GfycatPattern); // id == "CalmFriendlyLion"
+// Create an ID in a custom format and length
+// id == "walk-horrible-confess-question"
+id = HumanReadableId.Create(WordType.Verb, WordType.Adjective, WordType.Verb, WordType.Verb);
 
-// Create Id in a custom form and length
-var id = GfycatesceIds.Generate(new[]
-    {
-        WordType.Verb, WordType.Adjective, WordType.Verb, WordType.Verb, WordType.Animal
-    }); // id == "WalkHorribleConfessQuestionZebra"
+// Create an ID using a custom separator in pascal case
+// id == KickJumpyFruitfly
+id = HumanReadableId.Create(new Config
+{
+    SeparationChar = string.Empty,
+    LowerCasePassphrase = false
+}, WordType.Verb, WordType.Adjective, WordType.Animal);
+
 ```

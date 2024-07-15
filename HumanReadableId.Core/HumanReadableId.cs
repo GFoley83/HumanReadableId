@@ -2,7 +2,7 @@
 using System.Text;
 using System.Threading;
 
-namespace HumanReadableId
+namespace HumanReadableIdCreator
 {
     public enum WordType
     {
@@ -38,7 +38,7 @@ namespace HumanReadableId
         /// </summary>
         /// <param name="pattern">Array of WordType</param>
         /// <returns>Generated passphrase string</returns>
-        public static string Generate(params WordType[] pattern) => Generate(null, pattern);
+        public static string Create(params WordType[] pattern) => Generate(null, pattern);
 
         /// <summary>
         /// Default behavior returns an ID in the format: <code>adjective-adjective-animal-verb-adjective</code>

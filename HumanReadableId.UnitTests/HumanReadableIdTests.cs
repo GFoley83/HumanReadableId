@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using NUnit.Framework;
 
-namespace HumanReadableId.UnitTests
+namespace HumanReadableIdCreator.UnitTests
 {
     public class HumanReadableIdTests
     {
         [Test]
         public void ShouldGenerateAnId()
         {
-            var id = HumanReadableId.Generate();
+            var id = HumanReadableId.Create();
             Assert.IsNotEmpty(id);
         }
 
@@ -26,7 +26,7 @@ namespace HumanReadableId.UnitTests
         [Test]
         public void ShouldGenerateAnIdWithExpectedWordCountByDefault()
         {
-            var id = HumanReadableId.Generate();
+            var id = HumanReadableId.Create();
             var words = id.Split('-');
             Assert.AreEqual(words.Length, HumanReadableId.DefaultPattern.Length);
         }
@@ -34,7 +34,7 @@ namespace HumanReadableId.UnitTests
         [Test]
         public void ShouldGenerateAnIdInTheDefaultFormatByDefault()
         {
-            var id = HumanReadableId.Generate();
+            var id = HumanReadableId.Create();
             var words = id.Split('-');
 
             for (var i = 0; i < HumanReadableId.DefaultPattern.Length; i++)
@@ -48,7 +48,7 @@ namespace HumanReadableId.UnitTests
         [TestCase(new[] { WordType.Animal, WordType.Verb, WordType.Adjective })]
         public void ShouldGenerateAnIdWithCustomFormat(WordType[] pattern)
         {
-            var id = HumanReadableId.Generate(pattern);
+            var id = HumanReadableId.Create(pattern);
             var words = id.Split('-');
 
             for (var i = 0; i < pattern.Length; i++)
@@ -89,7 +89,7 @@ namespace HumanReadableId.UnitTests
         [Test]
         public void ShouldHandleEmptyPattern()
         {
-            var id = HumanReadableId.Generate(new WordType[] { });
+            var id = HumanReadableId.Create(new WordType[] { });
             var words = id.Split('-');
             Assert.AreEqual(words.Length, HumanReadableId.DefaultPattern.Length);
         }
@@ -98,7 +98,7 @@ namespace HumanReadableId.UnitTests
         public void ShouldGenerateIdWithLargePattern()
         {
             var largePattern = Enumerable.Repeat(WordType.Adjective, 100).ToArray();
-            var id = HumanReadableId.Generate(largePattern);
+            var id = HumanReadableId.Create(largePattern);
             var words = id.Split('-');
             Assert.AreEqual(words.Length, largePattern.Length);
         }
@@ -117,7 +117,7 @@ namespace HumanReadableId.UnitTests
         {
             static string GenerateIdAndCheckForDupes(ICollection<string> hashSet)
             {
-                var id = HumanReadableId.Generate();
+                var id = HumanReadableId.Create();
                 if (hashSet.Contains(id))
                 {
                     id = GenerateIdAndCheckForDupes(hashSet);

@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.1</TargetFramework>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>GFoley83</Authors>
     <Company />
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageProjectUrl>https://github.com/GFoley83/HumanReadableId</PackageProjectUrl>
     <RepositoryUrl>https://github.com/GFoley83/HumanReadableId</RepositoryUrl>
     <Copyright>https://opensource.org/licenses/MIT</Copyright>
-    <Description>Creates a human readable IDs like "happy-energetic-dog-runs-quickly". Use the default format of adjective-adjective-animal-verb-adjective or a custom format &amp; length of your choosing.
+    <Description>Creates a human readable IDs like "happy-energetic-dog-runs-quickly". Use the default format of adjective-adjective-animal-verb-adjective or a custom format and length of your choosing.
 
 Example Usage
 
@@ -17,15 +17,15 @@ https://dotnetfiddle.net/4KGjWQ
 
 // Create an ID in the default form adjective-adjective-animal-verb-adjective
 // id == "pale-swift-hornbill-support-saddlebrown"
-var id = HumanReadableId.Generate(); 
+var id = HumanReadableId.Create(); 
 
 // Create an ID in a custom format and length
-// id == "walk-horrible-confess-cuestion"
-id = HumanReadableId.Generate(WordType.Verb, WordType.Adjective, WordType.Verb, WordType.Verb);
+// id == "walk-horrible-confess-question"
+id = HumanReadableId.Create(WordType.Verb, WordType.Adjective, WordType.Verb, WordType.Verb);
 
 // Create an ID using a custom separator in pascal case
 // id == KickJumpyFruitfly
-id = HumanReadableId.Generate(new Config
+id = HumanReadableId.Create(new Config
 {
     SeparationChar = string.Empty,
     LowerCasePassphrase = false
@@ -39,6 +39,7 @@ id = HumanReadableId.Generate(new Config
   <PropertyGroup>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+    <Title>HumanReadableId</Title>
   </PropertyGroup>
 
   <ItemGroup>
